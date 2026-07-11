@@ -1,16 +1,47 @@
-# campus_connect
+# Campus Connect
 
-A new Flutter project.
+Live Web App: [ccstudent.99practice.com](https://www.google.com/search?q=http://ccstudent.99practice.com)[cite: 1]
 
-## Getting Started
+Welcome to the repository for **Campus Connect**, a comprehensive Flutter application designed to keep students updated with the latest campus events and notices[cite: 1]. This README provides a complete overview of the app's features, architecture, and technology stack, submitted as part of the DevSoc society selection task.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Key Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* **Dedicated Feeds:** Separate, intuitive tabs for both campus notices and upcoming events[cite: 1].
+* **Detailed Views:** In-depth pages for events and notices showcasing important links, detailed descriptions, organizers, dates, and venues[cite: 1].
+* **Offline Support:** Smart caching mechanism using `SharedPreferences` that locally saves data, allowing users to view feeds even without an internet connection[cite: 1].
+* **Robust Search Engine:** Full-screen search functionality with API debouncing, categorized results (Events, Notices, Bookmarks), and a saved recent search history[cite: 1].
+* **Bookmark System:** Save favorite events and notices for quick access, complete with a floating "Undo" SnackBar if an item is accidentally removed[cite: 1].
+* **Cross-Platform Wrapper:** A custom `DesktopMobileWrapper` that detects desktop environments (Windows, macOS, Linux) and scales a logical mobile view (iPhone 14 Pro Max proportions) to 75% for seamless desktop testing[cite: 1].
+* **Smooth UI/UX:** Integration of `Skeletonizer` for modern loading states, `CachedNetworkImage` for efficient image rendering, and fluid hero animations for search bar transitions[cite: 1].
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🛠️ Technology Stack
+
+* **Framework:** Flutter (Dart)[cite: 1].
+* **State Management:** Riverpod (`flutter_riverpod`) for managing search states and API data[cite: 1].
+* **Local Storage:** `shared_preferences` for caching API responses, saving search history, and storing bookmarked IDs locally[cite: 1].
+* **Networking:** `http` package for connecting to the custom REST API hosted on Render (`[https://campus-connect-api-z6og.onrender.com](https://campus-connect-api-z6og.onrender.com)`)[cite: 1].
+* **External Integrations:** `url_launcher` for safely opening external registration and important links directly from the app[cite: 1].
+
+---
+
+## 📁 Project Structure
+
+The codebase is modularized for maintainability and scalability[cite: 1]:
+
+* **`/models`**: Contains the data classes (`Event` and `Notice`) with structured JSON serialization[cite: 1].
+* **`/providers`**: Houses the Riverpod notifiers (`SearchState`, `BaseSearchNotifier`, etc.) to handle decoupled business logic[cite: 1].
+* **`/services`**: Contains `ApiService` which manages asynchronous HTTP GET requests and handles caching fallbacks[cite: 1].
+* **`/screens`**: Holds all UI page views including `MainNav` (Bottom Navigation), `NoticesFeed`, `EventsFeed`, `BookmarksScreen`, and their respective detail screens[cite: 1].
+* **`/widgets`**: Stores reusable UI components like the `CustomHeader`[cite: 1].
+
+---
+
+## ⚙️ Core Mechanisms Explained
+
+* **Smart Fetching:** When the feed screens load, the app attempts to fetch live data from the API[cite: 1]. If it fails (e.g., due to no internet connection), it seamlessly retrieves the last saved JSON response from `SharedPreferences` and alerts the user via a SnackBar[cite: 1].
+* **Debounced Search:** To prevent spamming the backend, the search provider uses a `Timer` to implement a 500ms debounce before dispatching the query to the server[cite: 1].
+* **Link Handling:** The application automatically cleans up external URLs fetched from the backend (adding `https://` if missing) and launches them safely in an external browser mode[cite: 1].
