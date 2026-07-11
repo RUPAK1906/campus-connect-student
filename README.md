@@ -1,6 +1,6 @@
 # Campus Connect
 
-Live Web App: [ccstudent.99practice.com](https://www.google.com/search?q=http://ccstudent.99practice.com)
+Live Web App: [ccstudent.99practice.com](https://www.ccstudent.99practice.com)
 
 Welcome to the repository for **Campus Connect**, a comprehensive Flutter application designed to keep students updated with the latest campus events and notices. This README provides a complete overview of the app's features, architecture, and technology stack, submitted as part of the DevSoc society selection task.
 
